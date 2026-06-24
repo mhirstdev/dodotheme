@@ -1,9 +1,10 @@
 {{- /* Renders one post in a feed. Article (has title) = teaser; micropost (no title) = full content. */ -}}
 <article class="entry h-entry {{ if .Title }}is-article{{ else }}is-micropost{{ end }}"{{ with .GetTerms "categories" }} data-cats="{{ range $i, $t := . }}{{ if $i }} {{ end }}{{ $t.Title | urlize }}{{ end }}"{{ end }}>
     {{- if .Title -}}
+    {{- $terms := partial "filtered_cats.html" . -}}
     <div class="entry-meta">
         <time class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date | time.Format ":date_long" }}</time>
-        {{- with .GetTerms "categories" }} <span class="sep">·</span> {{ range $i, $t := . }}{{ if $i }}, {{ end }}<a class="cat" href="{{ $t.Permalink }}">{{ $t.Title }}</a>{{ end }}{{ end }}
+        {{- with $terms }} <span class="sep">·</span> {{ range $i, $t := . }}{{ if $i }}, {{ end }}<a class="cat" href="{{ $t.Permalink }}">{{ $t.Title }}</a>{{ end }}{{ end }}
         <span class="sep">·</span> {{ .ReadingTime }} Min
     </div>
     <h2 class="entry-title p-name"><a class="u-url" href="{{ .Permalink }}">{{ .Title }}</a></h2>

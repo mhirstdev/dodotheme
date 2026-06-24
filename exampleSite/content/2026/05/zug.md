@@ -2,7 +2,7 @@
 title: "Auswärts mit dem Zug: ein Lehrstück in Geduld"
 date: 2026-05-21T23:05:00+02:00
 type: post
-categories: ["Fußball"]
+categories: ["longpost", "Fußball"]
 ---
 
 Drei Umstiege, ein verpasster Anschluss und ein Schaffner mit der Geduld eines Heiligen. Auswärtsfahrten mit der Bahn sind ein eigener Sport, und ich bin offenbar Stammspieler.

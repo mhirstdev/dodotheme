@@ -1,0 +1,7 @@
+{{- /* Returns a page's category terms minus the structural ones (micro, longpost). */ -}}
+{{- $skip := slice "micro" "longpost" -}}
+{{- $terms := slice -}}
+{{- range .GetTerms "categories" -}}
+{{- if not (in $skip (.Title | urlize)) -}}{{- $terms = $terms | append . -}}{{- end -}}
+{{- end -}}
+{{- return $terms -}}

@@ -1,7 +1,7 @@
 ---
 date: 2026-06-22T19:34:00+02:00
 type: post
-categories: ["Motorsport"]
+categories: ["micro", "Motorsport"]
 photos: ["https://picsum.photos/seed/quali/1200/800"]
 ---
 

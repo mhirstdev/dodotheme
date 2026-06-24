@@ -2,7 +2,7 @@
 title: "Wacken 2026 — drei Tage Schlamm, Bier und Blastbeats"
 date: 2026-06-14T22:10:00+02:00
 type: post
-categories: ["Festival", "Metal"]
+categories: ["longpost", "Festival", "Metal"]
 photos: ["https://picsum.photos/seed/wacken/1200/800"]
 ---
 

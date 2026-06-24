@@ -1,7 +1,7 @@
 ---
 date: 2026-06-15T20:05:00+02:00
 type: post
-categories: ["Motorsport"]
+categories: ["micro", "Motorsport"]
 photos: ["https://picsum.photos/seed/dodosunset/1200/800"]
 ---
 
