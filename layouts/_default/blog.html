@@ -1,7 +1,9 @@
 {{ define "main" }}
-    {{- $posts := where .Site.RegularPages "Type" "post" -}}
-    {{- $articles := where $posts "Title" "!=" "" -}}
-    {{- $cats := (.Site.GetPage "/categories").Pages -}}
+    {{- $articles := slice -}}
+    {{- with .Site.GetPage "/categories/longpost" }}{{ $articles = .Pages.ByDate.Reverse }}{{ end -}}
+    {{- $skip := slice "micro" "longpost" -}}
+    {{- $cats := slice -}}
+    {{- with .Site.GetPage "/categories" }}{{ range .Pages }}{{ if not (in $skip (.Title | urlize)) }}{{ $cats = $cats | append . }}{{ end }}{{ end }}{{ end -}}
 
     <section class="section-head"><span class="section-label">{{ .Title | default "Blog" }}</span><span class="rule"></span></section>
     {{ with .Content }}<div class="page-intro">{{ . }}</div>{{ end }}

@@ -18,20 +18,22 @@ Design language:
 
 | Type | How it's detected | Where it shows |
 |------|-------------------|----------------|
-| **Kurzmeldung** (micropost) | a post **without** a title | home `/` (the stream), in full |
-| **Blog post** (article) | a post **with** a title | `/blog/`, as a teaser; full on its own page |
+| **Kurzmeldung** (micropost) | a post in category `micro` (no title → shown in full) | home `/` (the stream) |
+| **Blog post** (article) | a post in category `longpost` (with title → teaser) | `/blog/` (category overview) |
 | **Inhaltsseite** (page) | a regular page (e.g. `about`) | its own URL |
 | **Galerie** | any post with a `photos` field | `/photos/` (grid) |
 
-Categories are the Micro.blog taxonomy (`categories`) and power the filter chips on
-`/blog/` (client-side) and the category pages at `/categories/<name>/`.
+Categories are the Micro.blog taxonomy (`categories`). The **structural** categories
+`micro` and `longpost` decide where a post appears (home vs `/blog/`) and are hidden
+from the visible tag lists. **Topical** categories (Festival, Motorsport, …) power the
+filter chips on `/blog/` (client-side) and the category pages at `/categories/<name>/`.
 
 ## Pages / navigation
 
 The header links to `stream` (`/`), `blog` (`/blog/`), `galerie` (`/photos/`) and
 `about` (`/about/`). Edit `layouts/partials/header.html` to change them.
 
-- `/` — home, lists **microposts** only (see note below to include articles).
+- `/` — home, lists posts in category `micro`.
 - `/blog/` — needs a page. Create a page named **Blog** with this front matter:
 
   ```yaml
@@ -44,8 +46,10 @@ The header links to `stream` (`/`), `blog` (`/blog/`), `galerie` (`/photos/`) an
 
 - `/photos/` and `/archive/` are generated automatically (Micro.blog output formats).
 
-> **Want long posts on the home page too?** In `layouts/index.html` replace
-> `$micros` (`where $posts "Title" ""`) with `$posts` to show the full stream.
+> **Categories drive the split:** the home lists category `micro`, `/blog/` lists
+> category `longpost`. To use different category names, edit the
+> `.Site.GetPage "/categories/…"` line in `layouts/index.html` and
+> `layouts/_default/blog.html`.
 
 ## Customizing
 

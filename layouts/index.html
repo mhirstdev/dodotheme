@@ -1,6 +1,6 @@
 {{ define "main" }}
-    {{- $posts := where .Site.RegularPages "Type" "post" -}}
-    {{- $micros := where $posts "Title" "" -}}
+    {{- $micros := slice -}}
+    {{- with .Site.GetPage "/categories/micro" }}{{ $micros = .Pages.ByDate.Reverse }}{{ end -}}
 
     <section class="section-head"><span class="section-label">Kurzmeldungen</span><span class="rule"></span></section>
 

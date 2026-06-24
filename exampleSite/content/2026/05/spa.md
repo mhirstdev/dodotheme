@@ -2,7 +2,7 @@
 title: "Spa-Francorchamps bei Regen – die schönste Strecke der Welt"
 date: 2026-06-02T11:20:00+02:00
 type: post
-categories: ["Motorsport"]
+categories: ["longpost", "Motorsport"]
 photos: ["https://picsum.photos/seed/spa/1200/800"]
 ---
 
