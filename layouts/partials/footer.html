@@ -1,0 +1,9 @@
+<footer class="site-footer">
+    <div>© 2024–{{ now.Format "2006" }} {{ with .Site.Params.author.name }}{{ . }}{{ else }}{{ .Site.Title }}{{ end }}</div>
+    <div class="footer-links">
+        <a href="{{ "feed.xml" | relURL }}">RSS</a>
+        <a href="{{ "feed.json" | relURL }}">JSON</a>
+        {{ with .Site.Params.author.username }}<a rel="me" href="https://micro.blog/{{ . }}">Micro.blog</a>{{ end }}
+    </div>
+</footer>
+{{ range .Site.Params.plugins_js }}<script src="{{ . }}"></script>{{ end }}

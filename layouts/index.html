@@ -1,0 +1,21 @@
+{{ define "main" }}
+    {{- $posts := where .Site.RegularPages "Type" "post" -}}
+    {{- $micros := where $posts "Title" "" -}}
+
+    <section class="section-head"><span class="section-label">Kurzmeldungen</span><span class="rule"></span></section>
+
+    <div class="feed h-feed">
+        {{ if .Site.Params.paginate_home }}
+            {{ $p := .Paginate $micros }}
+            {{ range $p.Pages }}{{ partial "feed_item.html" . }}{{ end }}
+            {{ partial "pager.html" $p }}
+        {{ else }}
+            {{ range $micros }}{{ partial "feed_item.html" . }}{{ end }}
+        {{ end }}
+    </div>
+
+    <nav class="home-links">
+        <a class="pager-btn" href="{{ "blog/" | relURL }}">Blog →</a>
+        <a class="pager-btn" href="{{ "archive/" | relURL }}">Archiv →</a>
+    </nav>
+{{ end }}

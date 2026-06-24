@@ -1,0 +1,29 @@
+<header class="site-header">
+    <div class="brand">
+        <div class="wordmark"><a href="{{ "/" | relURL }}">{{ .Site.Title | default "dodo with cap" }}<span class="caret">_</span></a></div>
+        {{ if .IsHome }}<div class="tagline" data-home-only>{{ .Site.Params.tagline | default "Sieht grimmig aus, ist aber eigentlich ganz nett. Meistens." }}</div>{{ end }}
+    </div>
+    <nav class="nav" id="site-nav">
+        <a href="{{ "/" | relURL }}" data-path="{{ "/" | relURL }}">stream</a><span class="sep">·</span>
+        <a href="{{ "blog/" | relURL }}" data-path="{{ "blog/" | relURL }}">blog</a><span class="sep">·</span>
+        <a href="{{ "photos/" | relURL }}" data-path="{{ "photos/" | relURL }}">galerie</a><span class="sep">·</span>
+        <a href="{{ "about/" | relURL }}" data-path="{{ "about/" | relURL }}">about</a>
+    </nav>
+</header>
+<script>
+(function () {
+    var strip = function (s) { return s.length > 1 ? s.replace(/\/$/, '') : s; };
+    var p = strip(location.pathname);
+    var home = strip('{{ "/" | relURL }}') || '/';
+    var links = document.querySelectorAll('#site-nav a'), best = null, bestLen = -1;
+    links.forEach(function (a) {
+        var d = strip(a.getAttribute('data-path'));
+        var isHome = (d === home || d === '/');
+        var match = isHome ? (p === home || p === '/' || p === '') : (p === d || p.indexOf(d + '/') === 0);
+        if (match && d.length > bestLen) { best = a; bestLen = d.length; }
+    });
+    if (best) best.classList.add('is-active');
+    var onHome = (p === home || p === '/' || p === '');
+    if (!onHome) document.querySelectorAll('[data-home-only]').forEach(function (el) { el.style.display = 'none'; });
+})();
+</script>

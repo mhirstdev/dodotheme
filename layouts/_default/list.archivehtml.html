@@ -1,0 +1,15 @@
+{{ define "main" }}
+    <section class="section-head"><span class="section-label">Archiv</span><span class="rule"></span></section>
+
+    {{ $cats := (.Site.GetPage "/categories").Pages }}
+    {{ if gt (len $cats) 0 }}<div class="archive-cats">{{ range $cats }}<a class="chip" href="{{ .Permalink }}">{{ .Title | lower }}</a>{{ end }}</div>{{ end }}
+
+    <div class="archive-list h-feed">
+        {{ range (where .Site.RegularPages "Type" "post") }}
+        <div class="arch-item h-entry">
+            <a class="arch-date u-url" href="{{ .Permalink }}"><time class="dt-published" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02.01.2006" }}</time></a>
+            <div class="arch-title">{{ if .Title }}<a class="p-name" href="{{ .Permalink }}">{{ .Title }}</a>{{ else }}<span class="arch-summary p-summary">{{ .Summary | plainify | htmlUnescape | truncate 90 }}</span>{{ end }}</div>
+        </div>
+        {{ end }}
+    </div>
+{{ end }}

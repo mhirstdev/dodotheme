@@ -1,0 +1,51 @@
+{
+	"baseURL": "http://localhost:1313/",
+	"title": "dodo with cap",
+	"defaultContentLanguage": "de",
+	"themesDir": "../..",
+	"theme": "dodowithcap",
+	"enableRobotsTXT": true,
+	"pluralizeListTitles": false,
+	"uglyURLs": false,
+	"pagination": { "pagerSize": 25 },
+	"mediaTypes": {
+		"application/json": { "suffixes": ["json"] }
+	},
+	"outputFormats": {
+		"RSS": { "baseName": "feed" },
+		"JSON": { "baseName": "feed" },
+		"RSD": { "mediaType": "application/xml", "baseName": "rsd", "isPlainText": true, "notAlternative": true },
+		"ArchiveHTML": { "mediaType": "text/html", "path": "archive", "baseName": "index", "isHTML": true, "notAlternative": true },
+		"ArchiveJSON": { "mediaType": "application/json", "path": "archive", "baseName": "index", "isPlainText": true, "notAlternative": true },
+		"PhotosHTML": { "mediaType": "text/html", "path": "photos", "baseName": "index", "isHTML": true, "notAlternative": true },
+		"PhotosJSON": { "mediaType": "application/json", "path": "photos", "baseName": "index", "isPlainText": true, "notAlternative": true },
+		"PodcastXML": { "mediaType": "application/rss+xml", "baseName": "podcast", "isPlainText": true, "notAlternative": true },
+		"PodcastJSON": { "mediaType": "application/json", "baseName": "podcast", "isPlainText": true, "notAlternative": true }
+	},
+	"outputs": {
+		"home": ["HTML", "RSS", "JSON", "RSD", "ArchiveHTML", "ArchiveJSON", "PhotosHTML", "PhotosJSON"],
+		"page": ["HTML"],
+		"section": ["HTML"],
+		"taxonomy": ["HTML", "RSS", "JSON"],
+		"term": ["HTML", "RSS", "JSON"]
+	},
+	"taxonomies": {
+		"category": "categories"
+	},
+	"markup": {
+		"goldmark": { "renderer": { "unsafe": true } }
+	},
+	"params": {
+		"author": {
+			"name": "Mike",
+			"username": "dodo"
+		},
+		"tagline": "Sieht grimmig aus, ist aber eigentlich ganz nett. Meistens.",
+		"description": "Ein Dodo zwischen Moshpit, Rennstrecke und Gin Tonic.",
+		"paginate_home": false,
+		"paginate_categories": false,
+		"plugins_css": [],
+		"plugins_js": [],
+		"plugins_html": []
+	}
+}

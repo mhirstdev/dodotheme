@@ -1,0 +1,8 @@
+{{- /* context = a Paginator */ -}}
+{{ if gt .TotalPages 1 }}
+<nav class="pager">
+    {{ if .HasPrev }}<a class="pager-btn" href="{{ .Prev.URL }}">← neuere</a>{{ else }}<span class="pager-btn is-disabled">← neuere</span>{{ end }}
+    <span class="pager-status">{{ .PageNumber }} / {{ .TotalPages }}</span>
+    {{ if .HasNext }}<a class="pager-btn" href="{{ .Next.URL }}">ältere →</a>{{ else }}<span class="pager-btn is-disabled">ältere →</span>{{ end }}
+</nav>
+{{ end }}

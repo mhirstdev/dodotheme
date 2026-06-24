@@ -1,0 +1,39 @@
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="preload" href="{{ "fonts/inter-400.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "fonts/jetbrains-mono-400.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+
+{{- $title := .Site.Title -}}
+{{- if not .IsHome -}}
+  {{- with .Title -}}
+    {{- $title = printf "%s – %s" . $.Site.Title -}}
+  {{- else -}}
+    {{- with .Summary -}}{{- $title = printf "%s – %s" (. | plainify | htmlUnescape | truncate 60) $.Site.Title -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
+<title>{{ $title }}</title>
+
+{{- $desc := "" -}}
+{{- if .IsHome -}}
+  {{- $desc = .Site.Params.tagline | default (.Site.Params.description | plainify) -}}
+{{- else if .Description -}}
+  {{- $desc = .Description -}}
+{{- else if .Summary -}}
+  {{- $desc = .Summary | plainify | htmlUnescape | truncate 160 -}}
+{{- end -}}
+{{ with $desc }}<meta name="description" content="{{ . }}">{{ end }}
+
+<meta property="og:site_name" content="{{ .Site.Title }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:type" content="{{ if and .IsPage (eq .Type "post") }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+{{ with $desc }}<meta property="og:description" content="{{ . }}">{{ end }}
+{{ with .Params.photos }}{{ with index . 0 }}<meta property="og:image" content="{{ . }}">{{ end }}{{ end }}
+<meta name="theme-color" content="#0d0d0e">
+
+<link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+
+{{ partial "microblog_head.html" . }}
+</head>

@@ -1,0 +1,17 @@
+name = "dodo with cap"
+license = "MIT"
+licenselink = "https://github.com/microdotblog/theme-blank/blob/master/LICENSE"
+description = "Minimalist, dark, text-first Micro.blog theme. Terminal/mono structure, Tonic accent, microposts + blog + gallery."
+homepage = "https://dodowithcap.rocks"
+demosite = "https://dodowithcap.rocks"
+min_version = "0.116.0"
+tags = ["microblog", "dark", "minimal", "text", "blog", "mono"]
+features = ["microposts", "blog", "gallery", "categories", "rss", "json-feed"]
+
+[author]
+  name = "Mike"
+
+[original]
+  name = "theme-blank"
+  homepage = "https://github.com/microdotblog/theme-blank"
+  repo = "https://github.com/microdotblog/theme-blank"
