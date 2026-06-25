@@ -9,6 +9,7 @@
     </div>
     <h2 class="entry-title p-name"><a class="u-url" href="{{ .Permalink }}">{{ .Title }}</a></h2>
     <p class="entry-summary p-summary">{{ .Summary | plainify | htmlUnescape | truncate 200 }}</p>
+    <a class="entry-more" href="{{ .Permalink }}">mehr →</a>
     {{- else -}}
     <div class="entry-meta">
         <a class="entry-permalink u-url" href="{{ .Permalink }}"><time class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date | time.Format ":date_long" }} <span class="sep">·</span> {{ .Date | time.Format ":time_short" }}</time></a>
