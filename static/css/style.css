@@ -127,6 +127,7 @@ a.pager-btn:hover, .chip:hover { color: var(--text); text-decoration: none; bord
 .e-content { font-size: 16.5px; line-height: 1.8; color: var(--content); }
 .e-content > :first-child { margin-top: 0; }
 .e-content p { margin: 0 0 1.1rem; }
+.e-content h1 { font-size: 22px; font-weight: 500; margin: 1.9rem 0 .8rem; color: var(--heading); }
 .e-content h2 { font-size: 20px; font-weight: 500; margin: 1.8rem 0 .8rem; color: var(--heading); }
 .e-content h3 { font-size: 17px; font-weight: 500; margin: 1.5rem 0 .6rem; color: var(--heading); }
 .e-content a { color: var(--accent); }
