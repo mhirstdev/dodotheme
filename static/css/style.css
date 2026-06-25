@@ -94,7 +94,7 @@ hr { border: 0; border-top: 1px solid var(--hairline); margin: 1.6rem 0; }
 /* buttons, pager, home links */
 .home-links, .more { display: flex; justify-content: center; gap: 10px; margin-top: 22px; }
 .pager { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 22px; }
-.pager-btn, .chip { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 9px 16px; background: none; cursor: pointer; }
+.pager-btn, .chip { display: inline-block; font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); text-decoration: none; border: 1px solid var(--border); border-radius: var(--radius); padding: 9px 16px; background: none; cursor: pointer; }
 a.pager-btn:hover, .chip:hover { color: var(--text); text-decoration: none; border-color: var(--accent-border); }
 .pager-status { font-family: var(--font-mono); font-size: 12.5px; color: var(--faint); }
 .pager-btn.is-disabled { color: var(--faint); opacity: .5; border-color: var(--hairline); cursor: default; }

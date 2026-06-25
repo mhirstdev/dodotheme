@@ -1,14 +1,24 @@
 {{ define "main" }}
-    <section class="section-head"><span class="section-label">{{ .Title }}</span><span class="rule"></span></section>
+    {{- $cur := .Title | urlize -}}
+    {{- $label := .Title -}}
+    {{- if eq $cur "longpost" }}{{ $label = "Blog" }}{{ else if eq $cur "micro" }}{{ $label = "Kurzmeldungen" }}{{ end -}}
+
+    <section class="section-head"><span class="section-label">{{ $label }}</span><span class="rule"></span></section>
     {{ with .Content }}<div class="page-intro">{{ . }}</div>{{ end }}
 
+    {{- $skip := slice "micro" "longpost" -}}
+    {{- $cats := slice -}}
+    {{- with .Site.GetPage "/categories" }}{{ range .Pages }}{{ if not (in $skip (.Title | urlize)) }}{{ $cats = $cats | append . }}{{ end }}{{ end }}{{ end -}}
+    {{ if gt (len $cats) 0 }}
+    <nav class="filters">
+        <a class="chip {{ if eq $cur "longpost" }}is-active{{ end }}" href="{{ "categories/longpost/" | relURL }}">alle</a>
+        {{ range $cats }}<a class="chip {{ if eq $cur (.Title | urlize) }}is-active{{ end }}" href="{{ .Permalink }}">{{ .Title | lower }}</a>{{ end }}
+    </nav>
+    {{ end }}
+
+    {{ $p := .Paginate .Pages 25 }}
     <div class="feed h-feed">
-        {{ if .Site.Params.paginate_categories }}
-            {{ $p := .Paginate .Pages }}
-            {{ range $p.Pages }}{{ partial "feed_item.html" . }}{{ end }}
-            {{ partial "pager.html" $p }}
-        {{ else }}
-            {{ range .Pages }}{{ partial "feed_item.html" . }}{{ end }}
-        {{ end }}
+        {{ range $p.Pages }}{{ partial "feed_item.html" . }}{{ end }}
     </div>
+    {{ partial "pager.html" $p }}
 {{ end }}

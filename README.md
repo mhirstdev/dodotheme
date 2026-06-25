@@ -19,37 +19,36 @@ Design language:
 | Type | How it's detected | Where it shows |
 |------|-------------------|----------------|
 | **Kurzmeldung** (micropost) | a post in category `micro` (no title → shown in full) | home `/` (the stream) |
-| **Blog post** (article) | a post in category `longpost` (with title → teaser) | `/blog/` (category overview) |
+| **Blog post** (article) | a post in category `longpost` (with title → teaser) | `/categories/longpost/` (paginated overview) |
 | **Inhaltsseite** (page) | a regular page (e.g. `about`) | its own URL |
 | **Galerie** | any post with a `photos` field | `/photos/` (grid) |
 
 Categories are the Micro.blog taxonomy (`categories`). The **structural** categories
-`micro` and `longpost` decide where a post appears (home vs `/blog/`) and are hidden
-from the visible tag lists. **Topical** categories (Festival, Motorsport, …) power the
-filter chips on `/blog/` (client-side) and the category pages at `/categories/<name>/`.
+`micro` and `longpost` decide where a post appears (home vs the blog overview) and are
+hidden from the visible tag lists. **Topical** categories (Festival, Motorsport, …) get
+button links at the top of the blog/category pages and their own pages at
+`/categories/<name>/`.
 
 ## Pages / navigation
 
-The header links to `stream` (`/`), `blog` (`/blog/`), `galerie` (`/photos/`) and
-`about` (`/about/`). Edit `layouts/partials/header.html` to change them.
+The header links to `stream` (`/`), `blog` (`/categories/longpost/`), `galerie`
+(`/photos/`) and `about` (`/about/`). Edit `layouts/partials/header.html` to change them.
 
-- `/` — home, lists posts in category `micro`.
-- `/blog/` — needs a page. Create a page named **Blog** with this front matter:
-
-  ```yaml
-  ---
-  title: "Blog"
-  layout: blog
-  ---
-  Optional intro text shown above the list.
-  ```
-
+- `/` — home, lists posts in category `micro` (paginated, 25 per page).
+- `/categories/longpost/` — the **blog overview**: Hugo's auto-generated category page
+  for `longpost`, paginated (25) with a row of category buttons at the top that link to
+  the other category pages. This is the `blog` entry in the nav — no custom page needed.
+- `/categories/<name>/` — every category has its own paginated page (same layout).
 - `/photos/` and `/archive/` are generated automatically (Micro.blog output formats).
 
-> **Categories drive the split:** the home lists category `micro`, `/blog/` lists
-> category `longpost`. To use different category names, edit the
-> `.Site.GetPage "/categories/…"` line in `layouts/index.html` and
-> `layouts/_default/blog.html`.
+> **Categories drive the split:** the home lists `micro`, the blog lists `longpost`. To
+> use different category names, edit the `.Site.GetPage "/categories/…"` lines in
+> `layouts/index.html` and `layouts/_default/list.html`, and the `blog` href in
+> `layouts/partials/header.html`.
+>
+> A custom page (`layout: blog`) can't paginate in Hugo, and Micro.blog only creates
+> regular pages — that's why the blog overview uses the `longpost` **category page**,
+> which paginates natively.
 
 ## Customizing
 
@@ -71,7 +70,7 @@ hugo server --source exampleSite
 ```
 
 The `exampleSite/` folder ships with sample microposts, articles, a gallery, an about
-page and the blog page, so you can see every layout immediately.
+page, so you can see every layout immediately.
 
 ## Export & install on Micro.blog
 
