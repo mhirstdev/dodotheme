@@ -5,8 +5,11 @@
     <section class="section-head"><span class="section-label">Kurzmeldungen</span><span class="rule"></span></section>
 
     {{ $p := .Paginate $micros 25 }}
-    <div class="feed h-feed">
-        {{ range $p.Pages }}{{ partial "feed_item.html" . }}{{ end }}
+    <div class="feed stream h-feed">
+        {{ range $i, $e := $p.Pages }}
+            {{ if $i }}<div class="stream-sep" aria-hidden="true"><span>//</span></div>{{ end }}
+            {{ partial "feed_item.html" $e }}
+        {{ end }}
     </div>
     {{ partial "pager.html" $p }}
 
