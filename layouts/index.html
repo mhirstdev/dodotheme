@@ -4,18 +4,14 @@
 
     <section class="section-head"><span class="section-label">Kurzmeldungen</span><span class="rule"></span></section>
 
+    {{ $p := .Paginate $micros 25 }}
     <div class="feed h-feed">
-        {{ if .Site.Params.paginate_home }}
-            {{ $p := .Paginate $micros }}
-            {{ range $p.Pages }}{{ partial "feed_item.html" . }}{{ end }}
-            {{ partial "pager.html" $p }}
-        {{ else }}
-            {{ range $micros }}{{ partial "feed_item.html" . }}{{ end }}
-        {{ end }}
+        {{ range $p.Pages }}{{ partial "feed_item.html" . }}{{ end }}
     </div>
+    {{ partial "pager.html" $p }}
 
     <nav class="home-links">
-        <a class="pager-btn" href="{{ "blog/" | relURL }}">Blog →</a>
+        <a class="pager-btn" href="{{ "categories/longpost/" | relURL }}">Blog →</a>
         <a class="pager-btn" href="{{ "archive/" | relURL }}">Archiv →</a>
     </nav>
 {{ end }}

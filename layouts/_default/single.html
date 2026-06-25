@@ -1,7 +1,7 @@
 {{ define "main" }}
 {{- if eq .Type "post" -}}
 
-    <a class="back-link" href="{{ if .Title }}{{ "blog/" | relURL }}{{ else }}{{ "/" | relURL }}{{ end }}">← zurück</a>
+    <a class="back-link" href="{{ if .Title }}{{ "categories/longpost/" | relURL }}{{ else }}{{ "/" | relURL }}{{ end }}">← zurück</a>
 
     {{- if .Title -}}
     {{- $terms := partial "filtered_cats.html" . -}}
